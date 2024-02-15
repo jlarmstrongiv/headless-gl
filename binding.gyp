@@ -10,6 +10,7 @@
   'targets': [
     {
       'target_name': 'webgl',
+      'type': 'static_library',
       'defines': [
         'VERSION=1.0.0'
       ],
