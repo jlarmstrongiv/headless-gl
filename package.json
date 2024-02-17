@@ -14,7 +14,7 @@
     "test": "standard | snazzy && tape test/*.js | faucet",
     "rebuild": "node-gyp rebuild --verbose",
     "prebuild": "prebuild --all --strip",
-    "install": "prebuild-install || { rm -rf angle && git clone --depth 1 --single-branch https://github.com/stackgl/angle.git && node-gyp rebuild; } && mv build/Release/webgl.a build/Release/webgl.node"
+    "install": "prebuild-install || { rm -rf angle && git clone --depth 1 --single-branch https://github.com/stackgl/angle.git && node-gyp configure && sed -i '/^LIBS :=/ {s,^LIBS :=.*,LIBS := $(builddir)/webgl_lib.a,;n;d}' build/webgl.target.mk && node-gyp build --verbose; }"
   },
   "dependencies": {
     "bindings": "^1.5.0",
